@@ -1,0 +1,24 @@
+function update(self, dt)
+	local pos = go.get_position()
+	pos.y = pos.y - 200 * dt -- Fall down at 200 pixels/sec
+	go.set_position(pos)
+
+	-- If star falls below the screen, delete it
+	if pos.y < -100 then
+
+		msg.post("main:/interface_go#interface", "missed_star")
+		
+		go.delete()
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	-- Defold sends "collision_response" when object hit
+	if message_id == hash("collision_response") then
+
+		msg.post("main:/interface_go#interface", "add_score", { amount = 10 })
+		
+		go.delete() -- Delete the star so it looks like we caught it
+	end
+end
+

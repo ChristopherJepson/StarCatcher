@@ -1,0 +1,10 @@
+images {
+  image: "/basket.png"
+}
+images {
+  image: "/star.png"
+}
+images {
+  image: "/star_particle.png"
+}
+extrude_borders: 2

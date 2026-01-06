@@ -1,0 +1,20 @@
+function init(self)
+	go.set("#sprite", "tint", vmath.vector4(0.3, 0, 0.5, 1))
+end
+
+function update(self, dt)
+	local pos = go.get_position()
+	pos.y = pos.y - 200 * dt
+	go.set_position(pos)
+
+	if pos.y < -100 then
+		go.delete()
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+		msg.post("main:/interface_go#interface", "caught_black_hole")
+		go.delete()
+	end
+end

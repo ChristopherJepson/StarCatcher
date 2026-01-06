@@ -1,0 +1,88 @@
+{
+  :bundle {
+    :last-bundle-command :project.bundle-windows
+    :output-directory "/home/cjepson1978"
+    :windows {
+      :build_report false
+      :contentless false
+      :liveupdate false
+      :platform "x86_64-win32"
+      :texture_compression "enabled"
+      :variant "debug"
+      :with_symbols true
+    }
+  }
+  :code {
+    :find {
+      :term "tigger"
+    }
+  }
+  :workflow {
+    :recent-files [
+      [
+        "/main/star.script"
+        :code
+      ]
+      [
+        "/game.atlas"
+        :scene
+      ]
+      [
+        "/main/black_hole.go"
+        :scene
+      ]
+      [
+        "/player.script"
+        :code
+      ]
+      [
+        "/main/interface.gui"
+        :scene
+      ]
+      [
+        "/main/spawn.script"
+        :code
+      ]
+      [
+        "/main/interface.gui_script"
+        :code
+      ]
+      [
+        "/input/game.input_binding"
+        :cljfx-form-view
+      ]
+      [
+        "/.gitattributes"
+        :code
+      ]
+      [
+        "/player.go"
+        :scene
+      ]
+      [
+        "/main/background.script"
+        :code
+      ]
+      [
+        "/main/background.go"
+        :scene
+      ]
+      [
+        "/main/starfield.particlefx"
+        :scene
+      ]
+      [
+        "/main/black_hole.script"
+        :code
+      ]
+      [
+        "/main/star.go"
+        :scene
+      ]
+      [
+        "/main/main.collection"
+        :scene
+      ]
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+# Defold build folder (Generated every time you run the game)
+/build/
+
+# Defold internal cache
+/.internal/
+
+# Defold server files (if you use the built-in server)
+/.defold/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+*.der

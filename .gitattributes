@@ -1,0 +1,7 @@
+# Tell GitHub that .go files are just text, not Go code
+*.go linguist-language=Text
+
+# Ensure Defold scripts are counted as Lua
+*.script linguist-language=Lua
+*.gui_script linguist-language=Lua
+*.render_script linguist-language=Lua

@@ -1,0 +1,83 @@
+script: "/main/interface.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 40.0
+    y: 623.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "SCORE: 0"
+  font: "default"
+  id: "score_text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 905.0
+    y: 618.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "LIVES: 3"
+  font: "default"
+  id: "lives_text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 507.0
+    y: 350.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+    z: 2.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "GAME OVER"
+  font: "default"
+  id: "gameover_text"
+  inherit_alpha: true
+  enabled: false
+}
+nodes {
+  position {
+    x: 510.0
+    y: 313.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+    z: 0.6
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "PRESS SPACE TO RESTART"
+  font: "default"
+  id: "restart_text"
+  inherit_alpha: true
+  enabled: false
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
