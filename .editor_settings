@@ -14,37 +14,13 @@
   }
   :code {
     :find {
-      :term "tigger"
+      :term "debug"
     }
   }
   :workflow {
     :recent-files [
       [
-        "/main/star.script"
-        :code
-      ]
-      [
-        "/game.atlas"
-        :scene
-      ]
-      [
-        "/main/black_hole.go"
-        :scene
-      ]
-      [
         "/player.script"
-        :code
-      ]
-      [
-        "/main/interface.gui"
-        :scene
-      ]
-      [
-        "/main/spawn.script"
-        :code
-      ]
-      [
-        "/main/interface.gui_script"
         :code
       ]
       [
@@ -60,10 +36,6 @@
         :scene
       ]
       [
-        "/main/background.script"
-        :code
-      ]
-      [
         "/main/background.go"
         :scene
       ]
@@ -72,11 +44,55 @@
         :scene
       ]
       [
+        "/main/star.go"
+        :scene
+      ]
+      [
+        "/.gitignore"
+        :code
+      ]
+      [
+        "/game.atlas"
+        :scene
+      ]
+      [
+        "/main/player.go"
+        :scene
+      ]
+      [
+        "/main/black_hole.go"
+        :scene
+      ]
+      [
+        "/main/background.script"
+        :code
+      ]
+      [
+        "/main/star.script"
+        :code
+      ]
+      [
+        "/main/spawn.script"
+        :code
+      ]
+      [
         "/main/black_hole.script"
         :code
       ]
       [
-        "/main/star.go"
+        "/main/interface.gui_script"
+        :code
+      ]
+      [
+        "/main/interface.gui"
+        :scene
+      ]
+      [
+        "/main/player.script"
+        :code
+      ]
+      [
+        "/main/blackhole_aura.particlefx"
         :scene
       ]
       [

@@ -1,10 +1,14 @@
 name: "main"
 instances {
   id: "player"
-  prototype: "/player.go"
+  prototype: "/main/player.go"
   position {
     x: -0.916269
-    y: -0.06442516
+    y: 58.935577
+  }
+  scale3 {
+    x: 0.411934
+    y: 0.32853
   }
 }
 instances {
@@ -42,6 +46,19 @@ embedded_instances {
   data: "components {\n"
   "  id: \"interface\"\n"
   "  component: \"/main/interface.gui\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"sfx_gameover\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/main/game_over.wav\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"music_bg\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/main/Song1.ogg\\\"\\n"
+  "looping: 1\\n"
+  "\"\n"
   "}\n"
   ""
 }

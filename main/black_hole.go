@@ -2,6 +2,10 @@ components {
   id: "black_hole"
   component: "/main/black_hole.script"
 }
+components {
+  id: "blackhole_aura"
+  component: "/main/blackhole_aura.particlefx"
+}
 embedded_components {
   id: "sprite"
   type: "sprite"
@@ -9,7 +13,7 @@ embedded_components {
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/game.atlas\"\n"
+  "  texture: \"/main/game.atlas\"\n"
   "}\n"
   ""
   scale {
@@ -37,8 +41,8 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 22.727272\n"
-  "  data: 22.16\n"
+  "  data: 24.891773\n"
+  "  data: 23.589678\n"
   "  data: 10.0\n"
   "}\n"
   ""

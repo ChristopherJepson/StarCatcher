@@ -2,7 +2,7 @@ emitters {
   mode: PLAY_MODE_LOOP
   duration: 0.1
   space: EMISSION_SPACE_WORLD
-  tile_source: "/game.atlas"
+  tile_source: "/main/game.atlas"
   animation: "star_particle"
   material: "/builtins/materials/particlefx.material"
   blend_mode: BLEND_MODE_ADD

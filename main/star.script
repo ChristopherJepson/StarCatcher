@@ -1,3 +1,17 @@
+function init(self)
+	-- Existing code (like setting speed)...
+	self.speed = 200 -- or whatever you have
+
+	-- START SPINNING
+	-- 1. "." means "this game object"
+	-- 2. "euler.z" is the Z-axis rotation (spinning like a wheel)
+	-- 3. Loop continuously forward (0 -> 360 -> 0 -> 360...)
+	-- 4. Target angle: 360 degrees
+	-- 5. Linear easing (steady speed, no speeding up/slowing down)
+	-- 6. Duration: 2.0 seconds for one full spin (Lower = Faster spin)
+	go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2.0)
+end
+
 function update(self, dt)
 	local pos = go.get_position()
 	pos.y = pos.y - 200 * dt -- Fall down at 200 pixels/sec

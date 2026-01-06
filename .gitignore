@@ -12,3 +12,6 @@
 Thumbs.db
 
 *.der
+/.editor_settings
+/.internal
+/build
