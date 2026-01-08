@@ -10,4 +10,7 @@ images {
 images {
   image: "/main/beam.png"
 }
+images {
+  image: "/main/blackhole.png"
+}
 extrude_borders: 2

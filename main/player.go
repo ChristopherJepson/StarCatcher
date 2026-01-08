@@ -56,3 +56,9 @@ embedded_components {
   data: "prototype: \"/main/beam.go\"\n"
   ""
 }
+embedded_components {
+  id: "sfx_beam"
+  type: "sound"
+  data: "sound: \"/main/beam.wav\"\n"
+  ""
+}

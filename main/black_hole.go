@@ -9,7 +9,7 @@ components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "default_animation: \"star\"\n"
+  data: "default_animation: \"blackhole\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
@@ -17,8 +17,8 @@ embedded_components {
   "}\n"
   ""
   scale {
-    x: 0.2
-    y: 0.2
+    x: 0.461119
+    y: 0.446054
     z: 0.2
   }
 }

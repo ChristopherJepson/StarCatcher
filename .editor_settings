@@ -14,7 +14,7 @@
   }
   :code {
     :find {
-      :term "reset_ammo"
+      :term "beam_factory"
     }
   }
   :workflow {
@@ -48,10 +48,6 @@
         :scene
       ]
       [
-        "/main/black_hole.go"
-        :scene
-      ]
-      [
         "/main/background.script"
         :code
       ]
@@ -66,10 +62,6 @@
       [
         "/main/star.script"
         :code
-      ]
-      [
-        "/main/game.atlas"
-        :scene
       ]
       [
         "/main/beam.collisionobject"
@@ -100,14 +92,6 @@
         :scene
       ]
       [
-        "/main/player.go"
-        :scene
-      ]
-      [
-        "/main/player.script"
-        :code
-      ]
-      [
         "/main/interface.gui_script"
         :code
       ]
@@ -116,7 +100,23 @@
         :scene
       ]
       [
+        "/main/black_hole.go"
+        :scene
+      ]
+      [
         "/main/beam.go"
+        :scene
+      ]
+      [
+        "/main/player.go"
+        :scene
+      ]
+      [
+        "/main/player.script"
+        :code
+      ]
+      [
+        "/main/game.atlas"
         :scene
       ]
     ]

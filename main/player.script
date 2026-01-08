@@ -69,7 +69,7 @@ function on_input(self, action_id, action)
 
 			-- 2. Spawn Beam
 			factory.create("#beam_factory")
-
+			msg.post("#sfx_beam", "play_sound")
 			-- 3. Update UI
 			msg.post("/interface_go#interface", "update_beam", { ammo = self.beam_ammo })
 		end
