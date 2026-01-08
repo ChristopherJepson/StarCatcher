@@ -1,12 +1,21 @@
-local TILT_ANGLE = 40   -- How far to tilt (in degrees)
-local TILT_SPEED = 10   -- How fast to tilt
+local TILT_ANGLE = 40  -- How far to tilt (in degrees)
+local TILT_SPEED = 10  -- How fast to tilt
 
 function init(self)
+	-- Acquire input focus so we can hear key presses
 	msg.post(".", "acquire_input_focus")
+
+	-- Movement Setup
 	self.speed = 400
 	self.dir = vmath.vector3()
 
-	-- We can start the music here once when the game loads
+	-- Beam Ammo Setup
+	self.beam_ammo = 5
+
+	-- Sync UI immediately on start
+	msg.post("/interface_go#interface", "update_beam", { ammo = self.beam_ammo })
+
+	-- Start Background Music
 	msg.post("/interface_go#music_bg", "play_sound")
 end
 
@@ -28,18 +37,51 @@ function update(self, dt)
 		target_rotation = 0
 	end
 
+	-- Smoothly interpolate to the target rotation
 	local current_rotation = go.get(".", "euler.z")
 	local new_rotation = vmath.lerp(dt * TILT_SPEED, current_rotation, target_rotation)
 	go.set(".", "euler.z", new_rotation)
 end
 
 function on_input(self, action_id, action)
+	-- === MOVEMENT INPUT ===
 	if action_id == hash("move_left") then
-		if action.pressed then self.dir.x = -1
-		elseif action.released and self.dir.x == -1 then self.dir.x = 0 end
+		if action.pressed then 
+			self.dir.x = -1
+		elseif action.released and self.dir.x == -1 then 
+			self.dir.x = 0 
+		end
 
 	elseif action_id == hash("move_right") then
-		if action.pressed then self.dir.x = 1
-		elseif action.released and self.dir.x == 1 then self.dir.x = 0 end
+		if action.pressed then 
+			self.dir.x = 1
+		elseif action.released and self.dir.x == 1 then 
+			self.dir.x = 0 
+		end
+	end
+
+	-- === FIRE TRACTOR BEAM ===
+	-- Ensure "key_space" matches your Input Binding name
+	if action_id == hash("key_space") and action.pressed then
+		if self.beam_ammo > 0 then
+			-- 1. Decrement Ammo
+			self.beam_ammo = self.beam_ammo - 1
+
+			-- 2. Spawn Beam
+			factory.create("#beam_factory")
+
+			-- 3. Update UI
+			msg.post("/interface_go#interface", "update_beam", { ammo = self.beam_ammo })
+		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	-- Listen for the reset command from the Interface (on Restart)
+	if message_id == hash("reset_ammo") then
+		self.beam_ammo = 5
+
+		-- Update the UI immediately so it shows "5" again
+		msg.post("/interface_go#interface", "update_beam", { ammo = self.beam_ammo })
 	end
 end

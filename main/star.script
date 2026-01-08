@@ -1,38 +1,40 @@
-function init(self)
-	-- Existing code (like setting speed)...
-	self.speed = 200 -- or whatever you have
+-- Define the property so the editor knows about it (optional, but good practice)
+go.property("speed", 200)
 
-	-- START SPINNING
-	-- 1. "." means "this game object"
-	-- 2. "euler.z" is the Z-axis rotation (spinning like a wheel)
-	-- 3. Loop continuously forward (0 -> 360 -> 0 -> 360...)
-	-- 4. Target angle: 360 degrees
-	-- 5. Linear easing (steady speed, no speeding up/slowing down)
-	-- 6. Duration: 2.0 seconds for one full spin (Lower = Faster spin)
+function init(self)
+	-- 1. Randomize the speed for THIS specific star
+	-- This overwrites the default 200 with a random number
+	self.speed = math.random(150, 400)
+
+	-- 2. Start the spinning animation
 	go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2.0)
 end
 
 function update(self, dt)
 	local pos = go.get_position()
-	pos.y = pos.y - 200 * dt -- Fall down at 200 pixels/sec
+
+	-- === CRITICAL FIX IS HERE ===
+	-- Use 'self.speed' (the random variable) NOT a hardcoded number like '200'
+	pos.y = pos.y - self.speed * dt
+
 	go.set_position(pos)
 
-	-- If star falls below the screen, delete it
+	-- Delete if it falls off screen
 	if pos.y < -100 then
-
+		-- Send message to interface before deleting
 		msg.post("main:/interface_go#interface", "missed_star")
-		
 		go.delete()
 	end
 end
 
 function on_message(self, message_id, message, sender)
-	-- Defold sends "collision_response" when object hit
 	if message_id == hash("collision_response") then
+		-- Send score to interface
+		msg.post("main:/interface_go#interface", "add_score", { amount = 100 })
 
-		msg.post("main:/interface_go#interface", "add_score", { amount = 10 })
-		
-		go.delete() -- Delete the star so it looks like we caught it
+		-- Play a sound (optional, if you have a sound component on the star)
+		-- msg.post("#sound", "play_sound")
+
+		go.delete()
 	end
 end
-

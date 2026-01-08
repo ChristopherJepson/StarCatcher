@@ -14,7 +14,7 @@
   }
   :code {
     :find {
-      :term "debug"
+      :term "reset_ammo"
     }
   }
   :workflow {
@@ -22,10 +22,6 @@
       [
         "/player.script"
         :code
-      ]
-      [
-        "/input/game.input_binding"
-        :cljfx-form-view
       ]
       [
         "/.gitattributes"
@@ -44,19 +40,11 @@
         :scene
       ]
       [
-        "/main/star.go"
-        :scene
-      ]
-      [
         "/.gitignore"
         :code
       ]
       [
         "/game.atlas"
-        :scene
-      ]
-      [
-        "/main/player.go"
         :scene
       ]
       [
@@ -68,27 +56,7 @@
         :code
       ]
       [
-        "/main/star.script"
-        :code
-      ]
-      [
-        "/main/spawn.script"
-        :code
-      ]
-      [
         "/main/black_hole.script"
-        :code
-      ]
-      [
-        "/main/interface.gui_script"
-        :code
-      ]
-      [
-        "/main/interface.gui"
-        :scene
-      ]
-      [
-        "/main/player.script"
         :code
       ]
       [
@@ -96,7 +64,59 @@
         :scene
       ]
       [
+        "/main/star.script"
+        :code
+      ]
+      [
+        "/main/game.atlas"
+        :scene
+      ]
+      [
+        "/main/beam.collisionobject"
+        :scene
+      ]
+      [
+        "/game.project"
+        :cljfx-form-view
+      ]
+      [
+        "/main/interface.gui"
+        :scene
+      ]
+      [
+        "/main/spawn.script"
+        :code
+      ]
+      [
+        "/main/beam.script"
+        :code
+      ]
+      [
+        "/input/game.input_binding"
+        :cljfx-form-view
+      ]
+      [
         "/main/main.collection"
+        :scene
+      ]
+      [
+        "/main/player.go"
+        :scene
+      ]
+      [
+        "/main/player.script"
+        :code
+      ]
+      [
+        "/main/interface.gui_script"
+        :code
+      ]
+      [
+        "/main/star.go"
+        :scene
+      ]
+      [
+        "/main/beam.go"
         :scene
       ]
     ]

@@ -1,25 +1,32 @@
 function init(self)
+	-- Initialize random seed for game randomness
+	math.randomseed(os.time())
+
+	-- Game State Variables
 	self.score = 0
 	self.lives = 3
 	self.game_over = false
 
+	-- Listen for input (specifically the Restart key)
 	msg.post(".", "acquire_input_focus")
 end
 
 function on_message(self, message_id, message, sender)
-	-- Listen for a message named "add_score"
+	-- 1. SCORE UPDATE
 	if message_id == hash("add_score") then
-
 		if not self.game_over then
-			-- Add the points from the message
 			self.score = self.score + message.amount
 			local score_node = gui.get_node("score_text")
-
 			gui.set_text(score_node, "SCORE: " .. self.score)
 		end
 
-	elseif message_id == hash("missed_star") then
+		-- 2. BEAM AMMO UPDATE
+	elseif message_id == hash("update_beam") then
+		local beam_node = gui.get_node("beam_text")
+		gui.set_text(beam_node, "BEAM: " .. message.ammo)
 
+		-- 3. MISSED STAR (Lose Life)
+	elseif message_id == hash("missed_star") then
 		if not self.game_over then
 			self.lives = self.lives - 1
 
@@ -27,64 +34,39 @@ function on_message(self, message_id, message, sender)
 			gui.set_text(lives_node, "LIVES: " .. self.lives)
 
 			if self.lives <= 0 then
-				self.game_over = true
-
-				local go_node = gui.get_node("gameover_text")
-				gui.set_enabled(go_node, true)
-
-				-- Stop Background Music
-				msg.post("/interface_go#music_bg", "stop_sound")
-
-				-- Play Game Over Sound
-				msg.post("/interface_go#sfx_gameover", "play_sound")
-
-				local restart_node = gui.get_node("restart_text")
-				gui.set_enabled(restart_node, true)
-
-				msg.post("main:/spawner#spawn", "stop_spawning")
+				trigger_game_over(self)
 			end
 		end
 
+		-- 4. CAUGHT BLACK HOLE (Lose Score & Life)
 	elseif message_id == hash("caught_black_hole") then
 		if not self.game_over then
+			-- Penalty: Decrease Score
 			self.score = self.score - 10
 			local score_node = gui.get_node("score_text")
 			gui.set_text(score_node, "SCORE: " .. self.score)
 
+			-- Penalty: Decrease Life
 			self.lives = self.lives - 1
 			local lives_node = gui.get_node("lives_text")
 			gui.set_text(lives_node, "LIVES: " .. self.lives)
 
 			if self.lives <= 0 then
-				self.game_over = true
-
-				local go_node = gui.get_node("gameover_text")
-				gui.set_enabled(go_node, true)
-
-				-- Stop Background Music
-				msg.post("/interface_go#music_bg", "stop_sound")
-
-				-- Play Game Over Sound
-				msg.post("/interface_go#sfx_gameover", "play_sound")
-
-				print("Game Over!")
-
-				local restart_node = gui.get_node("restart_text")
-				gui.set_enabled(restart_node, true)
-
-				msg.post("main:/spawner#spawn", "stop_spawning")
+				trigger_game_over(self)
 			end
 		end
 	end
 end
 
 function on_input(self, action_id, action)
-
+	-- Handle Game Over / Restart Logic
 	if action_id == hash("restart") and action.pressed and self.game_over then
+		-- Reset State Variables
 		self.score = 0
 		self.lives = 3
 		self.game_over = false
 
+		-- Reset UI Elements
 		local score_node = gui.get_node("score_text")
 		gui.set_text(score_node, "SCORE: 0")
 
@@ -97,10 +79,29 @@ function on_input(self, action_id, action)
 		local restart_node = gui.get_node("restart_text")
 		gui.set_enabled(restart_node, false)
 
-		-- Restart Spawning
+		-- Restart Game Systems
 		msg.post("main:/spawner#spawn", "start_spawning")
-
-		-- Restart Background Music
+		msg.post("/player#player", "reset_ammo") 
 		msg.post("/interface_go#music_bg", "play_sound")
 	end
+end
+
+-- === HELPER FUNCTIONS ===
+
+function trigger_game_over(self)
+	self.game_over = true
+
+	-- Show Game Over UI
+	local go_node = gui.get_node("gameover_text")
+	gui.set_enabled(go_node, true)
+
+	local restart_node = gui.get_node("restart_text")
+	gui.set_enabled(restart_node, true)
+
+	-- Stop Gameplay Systems
+	msg.post("main:/spawner#spawn", "stop_spawning")
+
+	-- Handle Audio
+	msg.post("/interface_go#music_bg", "stop_sound")
+	msg.post("/interface_go#sfx_gameover", "play_sound")
 end

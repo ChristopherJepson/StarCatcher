@@ -39,7 +39,6 @@ function spawn_star(self)
 	if self.stars_spawned >= 10 then
 		self.stars_spawned = 0
 		self.black_hole_trigger = math.random(0, 9)
-		print("New Batch! Black hole will appear at index:", self.black_hole_trigger)
 	end
 	
 	self.timer_handle = timer.delay(current_delay, false, spawn_star)

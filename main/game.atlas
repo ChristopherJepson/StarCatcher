@@ -7,4 +7,7 @@ images {
 images {
   image: "/main/Spaceship.png"
 }
+images {
+  image: "/main/beam.png"
+}
 extrude_borders: 2
