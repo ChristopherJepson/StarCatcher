@@ -94,5 +94,21 @@ nodes {
   id: "beam_text"
   inherit_alpha: true
 }
+nodes {
+  position {
+    x: 490.0
+    y: 242.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "PRESS M FOR MENU"
+  font: "default"
+  id: "btn_menu"
+  inherit_alpha: true
+  enabled: false
+}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

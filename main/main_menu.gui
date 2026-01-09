@@ -1,0 +1,52 @@
+script: "/main/main_menu.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  position {
+    x: 501.0
+    y: 378.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Play"
+  font: "default"
+  id: "btn_play"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 502.0
+    y: 274.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Settings"
+  font: "default"
+  id: "btn_settings"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 502.0
+    y: 166.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Quit"
+  font: "default"
+  id: "btn_quit"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

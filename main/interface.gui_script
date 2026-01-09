@@ -84,6 +84,12 @@ function on_input(self, action_id, action)
 		msg.post("/player#player", "reset_ammo") 
 		msg.post("/interface_go#music_bg", "play_sound")
 	end
+	-- If Game Over and player presses "M" (Make sure to add "key_m" to input bindings!)
+	if action_id == hash("key_m") and action.pressed and self.game_over then
+		print("CLICKED MENU BUTTON")
+		-- Tell the Loader to switch back to the main menu
+		msg.post("loader:/controller#controller", "show_menu")
+	end
 end
 
 -- === HELPER FUNCTIONS ===
@@ -93,6 +99,9 @@ function trigger_game_over(self)
 
 	-- Show Game Over UI
 	local go_node = gui.get_node("gameover_text")
+	gui.set_enabled(go_node, true)
+
+	local go_node = gui.get_node("btn_menu")
 	gui.set_enabled(go_node, true)
 
 	local restart_node = gui.get_node("restart_text")

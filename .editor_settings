@@ -68,31 +68,11 @@
         :scene
       ]
       [
-        "/game.project"
-        :cljfx-form-view
-      ]
-      [
-        "/main/interface.gui"
-        :scene
-      ]
-      [
         "/main/spawn.script"
         :code
       ]
       [
         "/main/beam.script"
-        :code
-      ]
-      [
-        "/input/game.input_binding"
-        :cljfx-form-view
-      ]
-      [
-        "/main/main.collection"
-        :scene
-      ]
-      [
-        "/main/interface.gui_script"
         :code
       ]
       [
@@ -112,12 +92,52 @@
         :scene
       ]
       [
-        "/main/player.script"
+        "/main/game.atlas"
+        :scene
+      ]
+      [
+        "/main/main_menu.collection"
+        :scene
+      ]
+      [
+        "/main/main_menu.gui_script"
         :code
       ]
       [
-        "/main/game.atlas"
+        "/main/main_menu.gui"
         :scene
+      ]
+      [
+        "/main/controller.script"
+        :code
+      ]
+      [
+        "/main/loader.collection"
+        :scene
+      ]
+      [
+        "/game.project"
+        :cljfx-form-view
+      ]
+      [
+        "/main/interface.gui"
+        :scene
+      ]
+      [
+        "/main/interface.gui_script"
+        :code
+      ]
+      [
+        "/main/main.collection"
+        :scene
+      ]
+      [
+        "/input/game.input_binding"
+        :cljfx-form-view
+      ]
+      [
+        "/main/player.script"
+        :code
       ]
     ]
   }
