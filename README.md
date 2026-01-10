@@ -6,4 +6,9 @@ Additional features and graphics enhancements were later added on with assistanc
 the latest builds below:
 
 
-Windows 64-bit Compile: <a href="https://drive.usercontent.google.com/u/0/uc?id=1AbClnUhCV8rzipvKv1sldy974eW203EY&export=download">Download</a>
+Windows 64-bit Ver. 0.0.2 Compile: <a href="https://drive.usercontent.google.com/u/0/uc?id=1AbClnUhCV8rzipvKv1sldy974eW203EY&export=download">Download</a>
+<br>
+Windows 64-bit Ver. 0.0.6 Compile: <a href="https://drive.usercontent.google.com/u/0/uc?id=1gsPu3SZVpccXUjgQndzwzi0pPYIGGlpN&export=download">Download</a>
+<br>
+MacOS 64-bit & ARM64 Ver. 0.0.6 Compile <a href="https://drive.usercontent.google.com/u/0/uc?id=157l8-Tl-tVxJAmQCYuObuu45mWQ07Ak-&export=download">Download</a> UNTESTED!!!
+<br>
