@@ -1,4 +1,4 @@
-script: "/main/interface.gui_script"
+script: "/main/Scripts/interface.gui_script"
 fonts {
   name: "default"
   font: "/builtins/fonts/default.font"

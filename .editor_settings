@@ -1,14 +1,26 @@
 {
   :bundle {
-    :last-bundle-command :project.bundle-windows
-    :output-directory "/home/cjepson1978"
+    :last-bundle-command :project.bundle-macos
+    :macos {
+      :architectures #{
+        "arm64-macos"
+        "x86_64-macos"
+      }
+      :build_report false
+      :contentless false
+      :liveupdate false
+      :texture_compression "enabled"
+      :variant "release"
+      :with_symbols true
+    }
+    :output-directory "C:\\Users\\chris\\Desktop\\StarCatcher"
     :windows {
       :build_report false
       :contentless false
       :liveupdate false
       :platform "x86_64-win32"
       :texture_compression "enabled"
-      :variant "debug"
+      :variant "release"
       :with_symbols true
     }
   }
@@ -32,10 +44,6 @@
         :scene
       ]
       [
-        "/main/background.go"
-        :scene
-      ]
-      [
         "/main/starfield.particlefx"
         :scene
       ]
@@ -48,32 +56,12 @@
         :scene
       ]
       [
-        "/main/background.script"
-        :code
-      ]
-      [
-        "/main/black_hole.script"
-        :code
-      ]
-      [
         "/main/blackhole_aura.particlefx"
         :scene
       ]
       [
-        "/main/star.script"
-        :code
-      ]
-      [
         "/main/beam.collisionobject"
         :scene
-      ]
-      [
-        "/main/spawn.script"
-        :code
-      ]
-      [
-        "/main/beam.script"
-        :code
       ]
       [
         "/main/star.go"
@@ -100,18 +88,6 @@
         :scene
       ]
       [
-        "/main/main_menu.gui_script"
-        :code
-      ]
-      [
-        "/main/main_menu.gui"
-        :scene
-      ]
-      [
-        "/main/controller.script"
-        :code
-      ]
-      [
         "/main/loader.collection"
         :scene
       ]
@@ -124,11 +100,11 @@
         :scene
       ]
       [
-        "/main/interface.gui_script"
-        :code
+        "/main/main.collection"
+        :scene
       ]
       [
-        "/main/main.collection"
+        "/main/main_menu.gui"
         :scene
       ]
       [
@@ -136,7 +112,43 @@
         :cljfx-form-view
       ]
       [
+        "/main/background.script"
+        :code
+      ]
+      [
+        "/main/star.script"
+        :code
+      ]
+      [
+        "/main/background.go"
+        :scene
+      ]
+      [
+        "/main/beam.script"
+        :code
+      ]
+      [
+        "/main/black_hole.script"
+        :code
+      ]
+      [
+        "/main/controller.script"
+        :code
+      ]
+      [
+        "/main/interface.gui_script"
+        :code
+      ]
+      [
+        "/main/main_menu.gui_script"
+        :code
+      ]
+      [
         "/main/player.script"
+        :code
+      ]
+      [
+        "/main/spawn.script"
         :code
       ]
     ]

@@ -1,0 +1,32 @@
+--[[
+controller.script
+Purpose: Acts as the central Scene Manager (Loader) for the application.
+Handles the loading and unloading of Collection Proxies to switch
+between the Main Menu and the Gameplay scenes.
+]]
+
+function init(self)
+	-- Acquire input focus to ensure this script can receive system-level commands
+	msg.post(".", "acquire_input_focus")
+
+	-- Initialize the application by loading the Main Menu scene first
+	msg.post("#menu_proxy", "load")
+end
+
+function on_message(self, message_id, message, sender)
+	-- Handle the completion of a proxy load operation
+	if message_id == hash("proxy_loaded") then
+		-- Proxies are loaded in memory but not visible/active until explicitly enabled
+		msg.post(sender, "enable")
+
+		-- Transition: Main Menu -> Gameplay
+	elseif message_id == hash("show_game") then
+		msg.post("#menu_proxy", "unload") -- Unload menu to free resources
+		msg.post("#game_proxy", "load")   -- Load the main game collection
+
+		-- Transition: Gameplay -> Main Menu
+	elseif message_id == hash("show_menu") then
+		msg.post("#game_proxy", "unload") -- Unload game to reset state completely
+		msg.post("#menu_proxy", "load")   -- Reload the main menu
+	end
+end

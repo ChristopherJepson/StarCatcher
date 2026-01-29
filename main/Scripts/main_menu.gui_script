@@ -1,0 +1,31 @@
+--[[
+main_menu.gui_script
+Purpose: Manages user interaction for the Main Menu interface.
+Handles button clicks (Play, Quit) and communicates with the main Controller.
+]]
+
+function init(self)
+	-- Acquire input focus to detect mouse clicks and touch events
+	msg.post(".", "acquire_input_focus")
+end
+
+function on_input(self, action_id, action)
+	-- Handle Mouse/Touch Input
+	if action_id == hash("touch") and action.pressed then
+
+		-- 1. PLAY BUTTON LOGIC
+		-- Check if the click coordinates define a hit on the "Play" button node
+		if gui.pick_node(gui.get_node("btn_play"), action.x, action.y) then
+			-- Send a message to the central Controller (Loader) to switch the scene to Gameplay
+			msg.post("loader:/controller#controller", "show_game")
+
+			-- 2. QUIT BUTTON LOGIC
+			-- Check if the click coordinates define a hit on the "Quit" button node
+		elseif gui.pick_node(gui.get_node("btn_quit"), action.x, action.y) then
+			-- Terminate the application immediately
+			sys.exit(0) 
+		end
+
+		-- Note: The "Settings" button is currently disabled and ignored.
+	end
+end

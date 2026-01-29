@@ -4,5 +4,5 @@ components {
 }
 components {
   id: "background"
-  component: "/main/background.script"
+  component: "/main/Scripts/background.script"
 }

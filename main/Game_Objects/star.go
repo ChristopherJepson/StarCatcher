@@ -1,6 +1,6 @@
 components {
   id: "star"
-  component: "/main/star.script"
+  component: "/main/Scripts/star.script"
 }
 embedded_components {
   id: "sprite"

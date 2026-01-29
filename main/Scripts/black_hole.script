@@ -1,0 +1,45 @@
+--[[
+black_hole.script
+Purpose: Controls the behavior of the Black Hole obstacles.
+Handles movement, rotation animation, particle effects, and collision logic.
+]]
+
+function init(self)
+	-- Define the downward velocity (pixels per second)
+	self.speed = 200 
+
+	-- specialized rotation animation (Spin forever on the Z-axis)
+	go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, 360, go.EASING_LINEAR, 2.0)
+
+	-- Initialize the visual aura effect
+	-- Ensure the ParticleFX component is named "blackhole_aura" in the Editor
+	particlefx.play("#blackhole_aura")
+
+	-- Optional: Color Tint
+	-- Currently disabled to preserve the natural colors of the imported neon sprite.
+	-- Uncomment the line below to force a purple hue if desired.
+	-- go.set("#sprite", "tint", vmath.vector4(0.3, 0, 0.5, 1))
+end
+
+function update(self, dt)
+	-- Calculate new position based on constant downward speed
+	local pos = go.get_position()
+	pos.y = pos.y - self.speed * dt
+	go.set_position(pos)
+
+	-- Despawn the object once it leaves the bottom of the screen to save memory
+	if pos.y < -100 then
+		go.delete()
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	-- Handle collisions with the player or beam
+	if message_id == hash("collision_response") then
+		-- Notify the interface to apply the penalty (score deduction/life loss)
+		msg.post("main:/interface_go#interface", "caught_black_hole")
+
+		-- Destroy this object immediately
+		go.delete()
+	end
+end

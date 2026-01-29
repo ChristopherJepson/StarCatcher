@@ -1,0 +1,9 @@
+--[[
+background.script
+Purpose: Manages static background elements and visual effects.
+]]
+
+function init(self)
+	-- Initialize and play the scrolling starfield particle effect immediately
+	particlefx.play("#starfield")
+end

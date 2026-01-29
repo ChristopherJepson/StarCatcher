@@ -1,0 +1,92 @@
+--[[
+spawn.script
+Purpose: Manages the procedural generation of enemies (Stars and Black Holes).
+Handles difficulty scaling over time and manages the recursive spawn timer loop.
+]]
+
+function init(self)
+	-- State Variables
+	self.elapsed_time = 0       -- Tracks total playtime to scale difficulty
+	self.spawning = true        -- Master switch for the spawn loop
+
+	-- Black Hole Logic
+	-- We spawn a black hole once every 10 stars at a random interval.
+	self.stars_spawned = 0
+	self.black_hole_trigger = math.random(0, 9) -- The "lucky" number that triggers a black hole
+
+	-- Kick off the spawn loop immediately
+	spawn_star(self)
+end
+
+function update(self, dt)
+	-- Track time only when the game is active (used for difficulty scaling)
+	if self.spawning then
+		self.elapsed_time = self.elapsed_time + dt
+	end
+end
+
+-- === SPAWNER FUNCTIONS ===
+
+function spawn_black_hole(self)
+	if not self.spawning then return end
+
+	-- Spawn at random X position, fixed Y (top of screen)
+	local pos = vmath.vector3(math.random(50, 900), 600, 0)
+	factory.create("#black_hole_factory", pos)
+end
+
+function spawn_star(self)
+	if not self.spawning then return end
+
+	-- 1. Create the Star
+	local pos = vmath.vector3(math.random(50, 900), 600, 0)
+	factory.create("#star_factory", pos)
+
+	-- 2. Calculate Difficulty (Spawn Delay)
+	-- Formula: Start at 1.5s delay. Decrease linearly to 0.5s over the first 60 seconds.
+	local capped_time = math.min(self.elapsed_time, 60)
+	local current_delay = 1.5 - (1.0 * (capped_time / 60))
+
+	-- 3. Check for Black Hole Trigger
+	-- If the current star count matches the random trigger index, spawn a Black Hole shortly after.
+	if self.stars_spawned == self.black_hole_trigger then
+		timer.delay(current_delay / 2, false, spawn_black_hole)
+	end
+
+	-- 4. Update Counters
+	self.stars_spawned = self.stars_spawned + 1
+	if self.stars_spawned >= 10 then
+		self.stars_spawned = 0
+		self.black_hole_trigger = math.random(0, 9) -- Pick a new trigger for the next batch
+	end
+
+	-- 5. Schedule Next Spawn (Recursive Loop)
+	self.timer_handle = timer.delay(current_delay, false, spawn_star)
+end 
+
+-- === GAME STATE CONTROL ===
+
+function on_message(self, message_id, message, sender)
+	-- STOP: Called on Game Over
+	if message_id == hash("stop_spawning") then
+		self.spawning = false
+
+		-- Cancel the pending timer so no new enemies appear after death
+		if self.timer_handle then
+			timer.cancel(self.timer_handle)
+			self.timer_handle = nil
+		end
+
+		-- START: Called on Restart
+	elseif message_id == hash("start_spawning") then
+		self.spawning = true
+
+		-- Reset Difficulty and Counters
+		self.elapsed_time = 0
+		self.stars_spawned = 0
+		self.black_hole_trigger = math.random(0, 9)
+
+		-- Restart the loop
+		spawn_star(self)
+	end
+end

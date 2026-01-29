@@ -5,12 +5,12 @@ images {
   image: "/star_particle.png"
 }
 images {
-  image: "/main/Spaceship.png"
+  image: "/main/Spirites/Spaceship.png"
 }
 images {
-  image: "/main/beam.png"
+  image: "/main/Spirites/beam.png"
 }
 images {
-  image: "/main/blackhole.png"
+  image: "/main/Spirites/blackhole.png"
 }
 extrude_borders: 2

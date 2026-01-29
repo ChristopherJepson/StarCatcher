@@ -1,0 +1,31 @@
+--[[
+beam.script
+Purpose: Controls the movement and lifecycle of the player's tractor beam.
+Handles vertical translation and cleanup upon collision or exiting the screen.
+]]
+
+function init(self)
+	-- Define the vertical velocity of the tractor beam (pixels per second)
+	self.speed = 600
+end
+
+function update(self, dt)
+	-- Calculate and apply new position based on speed and delta time
+	local pos = go.get_position()
+	pos.y = pos.y + self.speed * dt
+	go.set_position(pos)
+
+	-- Despawn the beam if it travels beyond the top of the visible play area
+	-- 1000 is an arbitrary bounds threshold based on screen height
+	if pos.y > 1000 then 
+		go.delete()
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	-- Destroy the beam immediately upon collision with any interactive object
+	-- (Star, Black Hole, etc.) to prevent multiple hits from a single shot.
+	if message_id == hash("collision_response") then
+		go.delete()
+	end
+end

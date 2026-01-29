@@ -1,6 +1,6 @@
 components {
   id: "black_hole"
-  component: "/main/black_hole.script"
+  component: "/main/Scripts/black_hole.script"
 }
 components {
   id: "blackhole_aura"
