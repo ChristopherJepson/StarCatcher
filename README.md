@@ -83,6 +83,6 @@ implications for how game logic is structured and tested in a CI pipeline.
 ## 👤 Author
 
 **Christopher Jepson**  
-*Pipeline Engineer*  
+*Build & Tools Engineer*  
 [LinkedIn](https://www.linkedin.com/in/christopher-jepson-310a84308) | 
 [Email](mailto:christopher.j.jepson@gmail.com)
